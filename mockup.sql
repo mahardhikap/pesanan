@@ -23,10 +23,12 @@ CREATE TABLE products (
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 
-CREATE TABLE images (
-    id CHAR(36) PRIMARY KEY,
-    user_id INT NOT NULL,
-    image_url VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users (id)
-);
+ALTER TABLE products MODIFY COLUMN description TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CREATE TABLE images (
+--     id CHAR(36) PRIMARY KEY,
+--     user_id INT NOT NULL,
+--     image_url VARCHAR(255) NOT NULL,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (user_id) REFERENCES users (id)
+-- );
