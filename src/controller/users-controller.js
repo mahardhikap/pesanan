@@ -113,6 +113,23 @@ const usersController = {
       return res.json(responseMessage("internalError", error.message));
     }
   },
+  adminDelete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const {roles} = req.payload
+      if(roles !== "superadmin"){
+        return res.json(responseMessage("unauthorized"));
+      }
+      if (!id) {
+        return res.json(responseMessage("notFound"));
+      } else {
+        const result = await deleteUserById(id);
+        return res.json(responseMessage("deleted", result.affectedRows));
+      }
+    } catch (error) {
+      return res.json(responseMessage("internalError", error.message));
+    }
+  },
   detailUser: async (req, res) => {
     try {
       const { id } = req.payload;

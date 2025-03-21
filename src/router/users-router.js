@@ -5,7 +5,8 @@ const {
   loginUser,
   deleteUser,
   detailUser,
-  updateUser
+  updateUser,
+  adminDelete
 } = require("../controller/users-controller");
 const { protect } = require("../middleware/jwt");
 
@@ -17,6 +18,7 @@ router.post("/user/create", protect, createUser);
 router.post("/user/login", loginUser);
 router.get("/user/list", protect, listUsers);
 router.delete("/user/delete", protect, deleteUser);
+router.delete("/user/delete/:id", protect, adminDelete);
 router.get("/user/detail", protect, detailUser)
 router.put("/user/:id/update", protect, updateUser);
 
